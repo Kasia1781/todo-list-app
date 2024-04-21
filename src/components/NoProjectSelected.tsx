@@ -9,7 +9,7 @@ export default function NoProjectSelected({
 	onStartAddProject,
 }: NoProjectSelectedProps) {
 	return (
-		<div className='mt-24 text-center w-2/3'>
+		<div className='mt-24 text-center'>
 			<img
 				src={logoImg}
 				alt='logo'
