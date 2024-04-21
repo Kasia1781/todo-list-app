@@ -1,6 +1,6 @@
 type InputProps = {
 	label: string;
-	textarea: string;
+	textarea?: boolean;
 };
 
 export default function Input({ label, textarea, ...props }: InputProps) {
