@@ -1,10 +1,22 @@
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import NoProjectSelected from './components/NoProjectSelected';
 import ProjectsSidebar from './components/ProjectsSidebar';
 import NewProject from './components/NewProject';
 
 function App() {
-	const [projectsStane, setProjectsStane] = useState({
+	type Project = {
+		id: number;
+		title: string;
+		description: string;
+		dueDate: string;
+	};
+
+	type ProjectState = {
+		selectedProjectId: string | undefined;
+		projects: Project[];
+	};
+
+	const [projectsStane, setProjectsStane] = useState<ProjectState>({
 		selectedProjectId: undefined,
 		projects: [],
 	});
@@ -35,8 +47,8 @@ function App() {
 				projects: [...prevStane.projects, newProject],
 			};
 		});
-		console.log(projectsStane);
 	}
+	console.log(projectsStane);
 
 	let content: ReactNode;
 
