@@ -1,7 +1,11 @@
 import { useRef } from 'react';
 import Input from './Input';
 
-export default function NewProject() {
+type NewProjectProps = {
+	onAddProject: (title: string, description: string, dueDate: string) => void;
+};
+
+export default function NewProject({ onAddProject }: NewProjectProps) {
 	const title = useRef<HTMLInputElement>(null);
 	const description = useRef<HTMLInputElement>(null);
 	const dueDate = useRef<HTMLInputElement>(null);
@@ -10,7 +14,8 @@ export default function NewProject() {
 		const enteredTitle = title.current!.value;
 		const enteredDescription = description.current!.value;
 		const enteredDueDate = dueDate.current!.value;
-		console.log(enteredTitle, enteredDescription, enteredDueDate);
+
+		onAddProject(enteredTitle, enteredDescription, enteredDueDate);
 	}
 
 	return (

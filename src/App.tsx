@@ -9,8 +9,6 @@ function App() {
 		projects: [],
 	});
 
-	console.log(projectsStane);
-
 	function handleStartAddProject() {
 		setProjectsStane((prevStane) => {
 			return {
@@ -20,10 +18,30 @@ function App() {
 		});
 	}
 
+	function handleAddProject(
+		title: string,
+		description: string,
+		dueDate: string
+	) {
+		const newProject = {
+			id: Math.random(),
+			title: title,
+			description: description,
+			dueDate: dueDate,
+		};
+		setProjectsStane((prevStane) => {
+			return {
+				...prevStane,
+				projects: [...prevStane.projects, newProject],
+			};
+		});
+		console.log(projectsStane);
+	}
+
 	let content: ReactNode;
 
 	if (projectsStane.selectedProjectId === null) {
-		content = <NewProject />;
+		content = <NewProject onAddProject={handleAddProject} />;
 	} else if (projectsStane.selectedProjectId === undefined) {
 		content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
 	}
