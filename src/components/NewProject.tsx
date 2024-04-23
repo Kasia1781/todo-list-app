@@ -15,6 +15,14 @@ export default function NewProject({ onAddProject }: NewProjectProps) {
 		const enteredDescription = description.current!.value;
 		const enteredDueDate = dueDate.current!.value;
 
+		if (
+			enteredTitle.trim() === '' ||
+			enteredDescription.trim() === '' ||
+			enteredDueDate.trim() === ''
+		) {
+			return;
+		}
+
 		onAddProject(enteredTitle, enteredDescription, enteredDueDate);
 	}
 
