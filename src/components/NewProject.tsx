@@ -35,7 +35,7 @@ export default function NewProject({ onAddProject }: NewProjectProps) {
 				</li>
 			</menu>
 			<div>
-				<Input label='Title' ref={title} />
+				<Input label='Title' ref={title} type='text' />
 				<Input label='Description' textarea ref={description} />
 				<Input label='Due Date' ref={dueDate} type='date' />
 			</div>

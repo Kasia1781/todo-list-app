@@ -44,11 +44,12 @@ function App() {
 		setProjectsStane((prevStane) => {
 			return {
 				...prevStane,
+				selectedProjectId: undefined,
 				projects: [...prevStane.projects, newProject],
 			};
 		});
 	}
-	console.log(projectsStane);
+	console.log(projectsStane.projects);
 
 	let content: ReactNode;
 
@@ -60,7 +61,10 @@ function App() {
 
 	return (
 		<main className='h-screen my-8 flex gap-8'>
-			<ProjectsSidebar onStartAddProject={handleStartAddProject} />
+			<ProjectsSidebar
+				onStartAddProject={handleStartAddProject}
+				projects={projectsStane.projects}
+			/>
 			{content}
 		</main>
 	);
