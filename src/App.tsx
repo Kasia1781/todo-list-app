@@ -1,7 +1,8 @@
-import { type ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import NoProjectSelected from './components/NoProjectSelected';
 import ProjectsSidebar from './components/ProjectsSidebar';
 import NewProject from './components/NewProject';
+import SelectedProject from './components/SelectedProject';
 
 function App() {
 	type Project = {
@@ -12,7 +13,7 @@ function App() {
 	};
 
 	type ProjectState = {
-		selectedProjectId: string | undefined;
+		selectedProjectId: number | undefined;
 		projects: Project[];
 	};
 
@@ -49,7 +50,6 @@ function App() {
 			};
 		});
 	}
-	console.log(projectsStane.projects);
 
 	function handleCancelAddProject() {
 		setProjectsStane((prevStane) => {
@@ -60,7 +60,23 @@ function App() {
 		});
 	}
 
-	let content: ReactNode;
+	function handleSelectedProject(id: number) {
+		setProjectsStane((prevStane) => {
+			return {
+				...prevStane,
+				selectedProjectId: id,
+			};
+		});
+	}
+
+	const selectedProject = projectsStane.projects.find(
+		(project) => project.id === projectsStane.selectedProjectId
+	);
+
+	console.log(projectsStane.projects);
+	console.log(projectsStane);
+
+	let content = <SelectedProject project={selectedProject} />;
 
 	if (projectsStane.selectedProjectId === null) {
 		content = (
@@ -78,6 +94,8 @@ function App() {
 			<ProjectsSidebar
 				onStartAddProject={handleStartAddProject}
 				projects={projectsStane.projects}
+				onSelectedProject={handleSelectedProject}
+        onSelectedProjectId={projectsStane.selectedProjectId}
 			/>
 			{content}
 		</main>
