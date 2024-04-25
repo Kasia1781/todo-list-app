@@ -51,10 +51,24 @@ function App() {
 	}
 	console.log(projectsStane.projects);
 
+	function handleCancelAddProject() {
+		setProjectsStane((prevStane) => {
+			return {
+				...prevStane,
+				selectedProjectId: undefined,
+			};
+		});
+	}
+
 	let content: ReactNode;
 
 	if (projectsStane.selectedProjectId === null) {
-		content = <NewProject onAddProject={handleAddProject} />;
+		content = (
+			<NewProject
+				onAddProject={handleAddProject}
+				onCancel={handleCancelAddProject}
+			/>
+		);
 	} else if (projectsStane.selectedProjectId === undefined) {
 		content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
 	}

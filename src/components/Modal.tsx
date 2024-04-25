@@ -1,13 +1,17 @@
 import { forwardRef, useImperativeHandle, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+import Button from './Button';
 
-type ModalProps = {
-	buttonCaption: string;
-	children: ReactNode;
+export type ModalHandle = {
 	open: () => void;
 };
 
-const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
+export type ModalProps = {
+	buttonCaption: string;
+	children: ReactNode;
+};
+
+const Modal = forwardRef<ModalHandle, ModalProps>(function Modal(
 	{ children, buttonCaption },
 	ref
 ) {
@@ -22,13 +26,15 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
 	});
 
 	return createPortal(
-		<dialog ref={dialog}>
+		<dialog
+			ref={dialog}
+			className='backdrop:bg-stone-900/60 p-4 rounded-md shadow-md'>
 			{children}
-			<form>
-				<button>{buttonCaption}</button>
+			<form method='dialog' className='mt-4 text-right'>
+				<Button>Okay</Button>
 			</form>
 		</dialog>,
-		document.getElementById('modal-root')
+		document.getElementById('root')
 	);
 });
 
