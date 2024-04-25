@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import Input from './Input';
 import Modal, { ModalHandle } from './Modal';
+import SelectedProject from './SelectedProject';
 
 type NewProjectProps = {
 	onAddProject: (title: string, description: string, dueDate: string) => void;
