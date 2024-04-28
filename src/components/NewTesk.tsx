@@ -1,6 +1,10 @@
 import { FormEvent, useState } from 'react';
 
-export default function NewTask() {
+type NewTaskProps = {
+	onAdd: (text: string) => void;
+};
+
+export default function NewTask({ onAdd }: NewTaskProps) {
 	const [enteredTask, setEnteredTask] = useState('');
 
 	function handleChange(event: FormEvent<HTMLInputElement>) {
@@ -8,6 +12,11 @@ export default function NewTask() {
 	}
 
 	function handleClick() {
+		if (enteredTask.trim() === '') {
+			return;
+		}
+
+		onAdd(enteredTask);
 		setEnteredTask('');
 	}
 

@@ -1,4 +1,4 @@
-import Task from "./Task";
+import Task from './Task';
 
 type SelectedProjectProps = {
 	project: {
@@ -7,12 +7,21 @@ type SelectedProjectProps = {
 		description: string;
 		dueDate: string;
 	};
+	tasks: {
+		id: number;
+		text: string;
+	};
 	onDelete: (id: number) => void;
+	onAddTask: () => void;
+	onDeleteTask: () => void;
 };
 
 export default function SelectedProject({
 	project,
 	onDelete,
+	onAddTask,
+	onDeleteTask,
+	tasks,
 }: SelectedProjectProps) {
 	const formattedDate = new Date(project.dueDate).toLocaleDateString('en-US', {
 		year: 'numeric',
@@ -38,7 +47,7 @@ export default function SelectedProject({
 					{project.description}
 				</p>
 			</header>
-			<Task />
+			<Task onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
 		</div>
 	);
 }
