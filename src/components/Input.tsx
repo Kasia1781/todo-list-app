@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
 type InputProps = {
-	label: string;
+	label?: string;
 	type?: number;
 	textarea?: boolean;
 } & ComponentPropsWithoutRef<'input'>;
