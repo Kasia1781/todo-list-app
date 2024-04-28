@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from 'react';
+import { useState } from 'react';
 import NoProjectSelected from './components/NoProjectSelected';
 import ProjectsSidebar from './components/ProjectsSidebar';
 import NewProject from './components/NewProject';
@@ -20,6 +20,7 @@ function App() {
 	const [projectsStane, setProjectsStane] = useState<ProjectState>({
 		selectedProjectId: undefined,
 		projects: [],
+		tasks: [],
 	});
 
 	function handleStartAddProject() {
@@ -73,7 +74,7 @@ function App() {
 		(project) => project.id === projectsStane.selectedProjectId
 	);
 
-	function handleDeleteProject(id: number) {
+	function handleDeleteProject() {
 		setProjectsStane((prevStane) => {
 			return {
 				...prevStane,
@@ -84,6 +85,12 @@ function App() {
 			};
 		});
 	}
+
+  function handleAddTask() {}
+
+  function handleDeleteTask() {}
+
+
 
 	//console.log(projectsStane.projects);
 	//console.log(projectsStane);
