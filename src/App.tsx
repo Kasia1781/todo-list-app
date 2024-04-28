@@ -73,10 +73,24 @@ function App() {
 		(project) => project.id === projectsStane.selectedProjectId
 	);
 
-	console.log(projectsStane.projects);
-	console.log(projectsStane);
+	function handleDeleteProject(id: number) {
+		setProjectsStane((prevStane) => {
+			return {
+				...prevStane,
+				selectedProjectId: undefined,
+				projects: projectsStane.projects.filter(
+					(project) => project.id !== prevStane.selectedProjectId
+				),
+			};
+		});
+	}
 
-	let content = <SelectedProject project={selectedProject} />;
+	//console.log(projectsStane.projects);
+	//console.log(projectsStane);
+
+	let content = (
+		<SelectedProject project={selectedProject} onDelete={handleDeleteProject} />
+	);
 
 	if (projectsStane.selectedProjectId === null) {
 		content = (
@@ -95,7 +109,7 @@ function App() {
 				onStartAddProject={handleStartAddProject}
 				projects={projectsStane.projects}
 				onSelectedProject={handleSelectedProject}
-        onSelectedProjectId={projectsStane.selectedProjectId}
+				onSelectedProjectId={projectsStane.selectedProjectId}
 			/>
 			{content}
 		</main>
