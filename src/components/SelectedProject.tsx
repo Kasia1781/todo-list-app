@@ -1,3 +1,5 @@
+import Task from "./Task";
+
 type SelectedProjectProps = {
 	project: {
 		id: number;
@@ -36,7 +38,7 @@ export default function SelectedProject({
 					{project.description}
 				</p>
 			</header>
-			Tasks
+			<Task />
 		</div>
 	);
 }
