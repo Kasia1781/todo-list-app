@@ -12,8 +12,8 @@ type SelectedProjectProps = {
 		text: string;
 	};
 	onDelete: (id: number) => void;
-	onAddTask: () => void;
-	onDeleteTask: () => void;
+	onAddTask: (text: string) => void;
+	onDeleteTask: (id: number) => void;
 };
 
 export default function SelectedProject({
